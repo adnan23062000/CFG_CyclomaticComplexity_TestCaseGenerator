@@ -19,8 +19,8 @@ public class ConditionChecking {
 
     public void printVariables() {
         for(Variable variable:variables){
-            System.out.println(variable.variableName+" "+variable.value);
+            //System.out.println(variable.variableName+" "+variable.value);
         }
-        System.out.println(variables.get(0).variableName);
+        //System.out.println(variables.get(0).variableName);
     }
 }

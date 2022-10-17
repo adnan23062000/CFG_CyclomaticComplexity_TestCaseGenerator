@@ -25,32 +25,32 @@ public class SourceCodeReader {
                 Lines.add(currentLine);   
         }
 
-//        System.out.print("Enter your Choice:\n\n1 => CFG with Cyclomatic Complexity\n\n2 => Statement Coverage\n\n3 => Decision Coverage\n\n4 => Condition Coverage\n\nEnter your choice: ");
-//        Scanner input=new Scanner(System.in);
-//        int option=input.nextInt();
-//        if(option == 1){
-//            MakeGraph Graph = new MakeGraph(Lines);
-//            Graph.start();
-//        }
-//        else if(option==2)
-//        {
-//            TestCaseGenerationParser parser = new TestCaseGenerationParser(Lines);
-//            parser.start();
-//            parser.statementCoverage();
-//        }
-//        else if(option == 3){
-//            TestCaseGenerationParser parser=new TestCaseGenerationParser(Lines);
-//            parser.start();
-//        }
+        System.out.print("Enter your Choice:\n\n1 => CFG with Cyclomatic Complexity\n\n2 => Statement Coverage\n\n3 => Decision Coverage\n\n4 => Condition Coverage\n\nEnter your choice: ");
+        Scanner input=new Scanner(System.in);
+        int option=input.nextInt();
+        if(option == 1){
+            MakeGraph Graph = new MakeGraph(Lines);
+            Graph.start();
+        }
+        else if(option==2)
+        {
+            TestCaseGenerationParser parser = new TestCaseGenerationParser(Lines);
+            parser.start();
+            parser.statementCoverage();
+        }
+        else if(option == 3)
+        {
+            TestCaseGenerationParser parser = new TestCaseGenerationParser(Lines);
+            parser.start();
+            parser.branchCoverage();
+        }
 
 
 
             /*for (int i = 0; i < Lines.size(); i++) {
                System.out.println(Lines.get(i));
             }*/
-        TestCaseGenerationParser parser = new TestCaseGenerationParser(Lines);
-        parser.start();
-        parser.conditionCoverage();
+
 
 
     }

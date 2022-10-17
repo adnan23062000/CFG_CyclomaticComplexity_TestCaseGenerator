@@ -67,12 +67,12 @@ public class TestCaseGenerationParser {
             }
         }
         for (ConditionChecking condition : conditions) {
-            System.out.println(condition.comparisonSign);
+            //System.out.println(condition.comparisonSign);
             condition.printVariables();
         }
 
         for (Variable variable : variables) {
-            System.out.println(variable.variableName + " " + variable.value);
+            //System.out.println(variable.variableName + " " + variable.value);
         }
 
 
@@ -85,18 +85,20 @@ public class TestCaseGenerationParser {
         }
     }
 
-    public void conditionCoverage() {
-        System.out.println("\n\nCondition Coverage:");
+    public void branchCoverage() {
+        System.out.println("\n\nDecision/Branch Coverage:");
         //System.out.println(conditions.size());
 
         for (int i = 0; i < conditions.size(); i++) {
-            System.out.println("\n\nTest case: " + (i + 1) + "\n");
-            generateConditionTests(i);
+            System.out.println("\n\nTest case: " + "\n");
+            generateDecisionTests(i);
+            System.out.println("\n\nTest case: " + "\n");
+            generateDecisionTestsFalse(i);
         }
 
     }
 
-    public void generateConditionTests(int i) {
+    public void generateDecisionTests(int i) {
 
 //        System.out.println(conditions.get(i).variables.get(0).variableName);
 //        System.out.println(conditions.get(i).comparisonSign);
@@ -131,11 +133,41 @@ public class TestCaseGenerationParser {
         }
     }
 
+    public void generateDecisionTestsFalse(int i){
+
+        if (conditions.get(i).comparisonSign.equals("==")) {
+            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
+            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+                System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 6);
+            }
+        }
+
+        else if (conditions.get(i).comparisonSign.equals("!=")) {
+            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 3);
+            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+                System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 3);
+            }
+        }
+
+        else if (conditions.get(i).comparisonSign.equals(">")) {
+            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
+            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+                System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 5);
+            }
+        }
+
+        else if (conditions.get(i).comparisonSign.equals("<")) {
+            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 7);
+            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+                System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 4);
+            }
+        }
+    }
+
 
     public static boolean isNumeric(String string) {
-        int intValue;
 
-        //System.out.println(String.format("Parsing string: \"%s\"", string));
+        int intValue;
 
         if(string == null || string.equals("")) {
             //System.out.println("String cannot be parsed, it is null or empty.");
