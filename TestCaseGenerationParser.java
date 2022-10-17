@@ -104,30 +104,30 @@ public class TestCaseGenerationParser {
 //        System.out.println(conditions.get(i).comparisonSign);
 //        System.out.println(conditions.get(i).variables.get(1).variableName);
 
-        if (conditions.get(i).comparisonSign.equals("==")) {
-            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
-            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+        if(checkVariableInt(conditions.get(i).variables.get(1).variableName)){
+            int x = getTestCaseValue(Integer.parseInt(conditions.get(i).variables.get(1).variableName), conditions.get(i).comparisonSign);
+            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + x);
+        }
+
+        else {
+
+            if (conditions.get(i).comparisonSign.equals("==")) {
+                System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
                 System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 2);
             }
-        }
 
-        else if (conditions.get(i).comparisonSign.equals("!=")) {
-            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
-            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+            else if (conditions.get(i).comparisonSign.equals("!=")) {
+                System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
                 System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 4);
             }
-        }
 
-        else if (conditions.get(i).comparisonSign.equals(">")) {
-            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 5);
-            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+            else if (conditions.get(i).comparisonSign.equals(">")) {
+                System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 5);
                 System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 3);
             }
-        }
 
-        else if (conditions.get(i).comparisonSign.equals("<")) {
-            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 1);
-            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+            else if (conditions.get(i).comparisonSign.equals("<")) {
+                System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 1);
                 System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 5);
             }
         }
@@ -135,31 +135,31 @@ public class TestCaseGenerationParser {
 
     public void generateDecisionTestsFalse(int i){
 
-        if (conditions.get(i).comparisonSign.equals("==")) {
-            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
-            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
-                System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 6);
-            }
+        if(checkVariableInt(conditions.get(i).variables.get(1).variableName)){
+            int x = getTestCaseValueFalse(Integer.parseInt(conditions.get(i).variables.get(1).variableName), conditions.get(i).comparisonSign);
+            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + x);
         }
 
-        else if (conditions.get(i).comparisonSign.equals("!=")) {
-            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 3);
-            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+        else {
+
+            if (conditions.get(i).comparisonSign.equals("==")) {
+                System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
                 System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 3);
             }
-        }
 
-        else if (conditions.get(i).comparisonSign.equals(">")) {
-            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 2);
-            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
-                System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 5);
-            }
-        }
-
-        else if (conditions.get(i).comparisonSign.equals("<")) {
-            System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 7);
-            if (!checkVariableInt(conditions.get(i).variables.get(1).variableName)) {
+            else if (conditions.get(i).comparisonSign.equals("!=")) {
+                System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 4);
                 System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 4);
+            }
+
+            else if (conditions.get(i).comparisonSign.equals(">")) {
+                System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 1);
+                System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 6);
+            }
+
+            else if (conditions.get(i).comparisonSign.equals("<")) {
+                System.out.println(conditions.get(i).variables.get(0).variableName + ": " + 7);
+                System.out.println(conditions.get(i).variables.get(1).variableName + ": " + 3);
             }
         }
     }
@@ -189,7 +189,45 @@ public class TestCaseGenerationParser {
         else
             return false;
     }
+
+    public int getTestCaseValue(int val, String condition) {
+
+        if(condition.equals(">")) {
+            return val + 1;
+        }
+        else if(condition.equals("<")) {
+            return val - 1;
+        }
+        else if(condition.equals("==")) {
+            return val;
+        }
+        else if(condition.equals("!=")) {
+            return val + 2;
+        }
+
+        return 0;
+    }
+
+    public int getTestCaseValueFalse(int val, String condition) {
+
+        if(condition.equals(">")) {
+            return val - 1;
+        }
+        else if(condition.equals("<")) {
+            return val + 1;
+        }
+        else if(condition.equals("==")) {
+            return val + 2;
+        }
+        else if(condition.equals("!=")) {
+            return val;
+        }
+
+        return 0;
+    }
+
 }
+
 
 
 
